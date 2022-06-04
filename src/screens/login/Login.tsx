@@ -1,4 +1,4 @@
-import {SafeAreaView} from 'react-native';
+import {Platform, SafeAreaView, StatusBar} from 'react-native';
 import React, {useContext} from 'react';
 import useLogin from '../../hooks/use-login';
 import {
@@ -15,6 +15,9 @@ const Login = () => {
 
   return (
     <SafeAreaView>
+      {Platform.OS === 'ios' && (
+        <StatusBar barStyle="light-content" translucent />
+      )}
       <LoginBody>
         <AuthButton onPress={authLogin}>
           <ButtonTitle>Spotify</ButtonTitle>

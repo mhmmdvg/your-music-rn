@@ -29,7 +29,11 @@ const SearchTitle = styled.Text`
 `;
 
 const SafeArea = styled.SafeAreaView`
-  padding: 8px 12px;
+  padding: 8px 13px;
+`;
+
+const AppBar = styled.View`
+  padding: 0px 13px;
 `;
 
 const TopBar = styled.View`
@@ -50,15 +54,17 @@ const Search = () => {
 
   return (
     <SafeArea>
-      <TopBar>
-        <SearchTitle>Search</SearchTitle>
-      </TopBar>
-      <TouchableWithoutFeedback
-        onPress={() => navigation?.navigate('Searching')}>
-        <SearchInput>
-          <PlaceHolder>Search</PlaceHolder>
-        </SearchInput>
-      </TouchableWithoutFeedback>
+      <AppBar>
+        <TopBar>
+          <SearchTitle>Search</SearchTitle>
+        </TopBar>
+        <TouchableWithoutFeedback
+          onPress={() => navigation?.navigate('Searching')}>
+          <SearchInput>
+            <PlaceHolder>Search</PlaceHolder>
+          </SearchInput>
+        </TouchableWithoutFeedback>
+      </AppBar>
       <FlatList
         overScrollMode="never"
         style={styles.container}

@@ -1,4 +1,4 @@
-import {RefreshControl, SafeAreaView, StatusBar} from 'react-native';
+import {Platform, RefreshControl, SafeAreaView, StatusBar} from 'react-native';
 import React from 'react';
 import useCurrentPlaylist from '../../hooks/use-currentPlaylist';
 import useRecommendPlaylists from '../../hooks/use-playlist';
@@ -20,7 +20,9 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <StatusBar barStyle="light-content" translucent />
+      {Platform.OS === 'ios' && (
+        <StatusBar barStyle="light-content" translucent />
+      )}
       <Body
         overScrollMode="never"
         refreshControl={
