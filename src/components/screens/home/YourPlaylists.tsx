@@ -35,7 +35,11 @@ const YourPlaylists: FC<Props> = ({data, refresh}) => {
         horizontal={true}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <TouchableOpacity style={styles.cardList}>
+          <TouchableOpacity
+            style={styles.cardList}
+            onPress={() =>
+              navigation?.navigate('Detail Playlists', {data: item})
+            }>
             <PlaylistsImageTrack
               source={{
                 uri:

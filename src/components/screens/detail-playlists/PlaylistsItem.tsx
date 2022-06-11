@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-
 import {
   DescPlaylists,
   PlaylistsImage,
@@ -9,36 +8,42 @@ import {
 } from './styled/styled';
 
 type Props = {
-  onPress: () => void;
+  id: string;
   name: string;
-  images: [
+  artists: [
     {
-      url?: string;
+      name: string;
     },
   ];
-  tracks: {
-    total: number;
+  album: {
+    name: string;
+    images: [
+      {
+        url: string;
+      },
+    ];
   };
+  duration_ms?: number;
 };
 
-const UserProfilePlaylists: FC<Props> = ({name, images, tracks, onPress}) => {
+const PlaylistsItem: FC<Props> = ({name, artists, album}) => {
   return (
-    <TouchableList onPress={onPress}>
+    <TouchableList>
       <PlaylistsImage
         source={{
           uri:
-            images[0]?.url === undefined
+            album.images[0]?.url === undefined
               ? 'https://user-images.githubusercontent.com/57744555/171692133-4545c152-1f12-4181-b1fc-93976bdbc326.png'
-              : images[0]?.url,
+              : album.images[0]?.url,
         }}
         resizeMode="cover"
       />
       <DescPlaylists>
         <PlaylistsTitle>{name}</PlaylistsTitle>
-        <TotalTracks>{tracks.total} tracks</TotalTracks>
+        <TotalTracks>{artists[0].name}</TotalTracks>
       </DescPlaylists>
     </TouchableList>
   );
 };
 
-export default UserProfilePlaylists;
+export default PlaylistsItem;

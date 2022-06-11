@@ -1,13 +1,17 @@
 import {
   AuthType,
+  DetailPlaylistsData,
   InputCreatePlaylistType,
+  SnapshotUpdateType,
   UpdatePlaylistsType,
   UpdateUserType,
 } from '../types/context-type';
 import {
   ActionMap,
   AuthPayload,
+  DetailPlaylistsPayload,
   InputCreatePlaylistPayload,
+  SnapshotUpdatePayload,
   UpdatePlaylistsPayload,
   UpdateUserPayload,
 } from '../types/reducer-type';
@@ -78,6 +82,50 @@ export const updatePlaylistsReducer = (
   switch (action.type) {
     case 'UPDATE_PLAYLISTS':
       return {...state, ...action.payload};
+
+    default:
+      return state;
+  }
+};
+
+export type DetailPlaylistsActions =
+  ActionMap<DetailPlaylistsPayload>[keyof ActionMap<DetailPlaylistsPayload>];
+
+export const detailPlaylistsReducer = (
+  state: DetailPlaylistsData,
+  action: DetailPlaylistsActions,
+) => {
+  switch (action.type) {
+    case 'DETAIL_PLAYLISTS':
+      return {
+        ...state,
+        id: action.payload.id,
+        description: action.payload.description,
+        images: action.payload.images,
+        name: action.payload.name,
+        owner: {
+          display_name: action.payload.owner.display_name,
+        },
+      };
+
+    default:
+      return state;
+  }
+};
+
+export type SnapshotUpdateActions =
+  ActionMap<SnapshotUpdatePayload>[keyof ActionMap<SnapshotUpdatePayload>];
+
+export const snapshotUpdateReducer = (
+  state: SnapshotUpdateType,
+  action: SnapshotUpdateActions,
+) => {
+  switch (action.type) {
+    case 'SNAPSHOT_UPDATE':
+      return {
+        ...state,
+        snapshot_id: action.payload.snapshot_id,
+      };
 
     default:
       return state;

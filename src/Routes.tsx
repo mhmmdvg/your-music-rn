@@ -6,8 +6,9 @@ import {MyTheme} from './utils/theme';
 import Login from './screens/login/Login';
 import useLogin from './hooks/use-login';
 import BottomNav from './components/bottom-navigation/BottomNav';
-import Searching from './screens/search/Searching';
-import AddPlaylist from './components/add-playlist/AddPlaylist';
+import AddPlaylist from './screens/add-playlist/AddPlaylist';
+import AddSongs from './screens/add-songs/AddSongs';
+import SearchSongs from './screens/search/Search-songs';
 
 const Stack = createStackNavigator();
 
@@ -25,11 +26,6 @@ const Routes = () => {
           <>
             <Stack.Group>
               <Stack.Screen name="Bottom Navigation" component={BottomNav} />
-              <Stack.Screen
-                name="Searching"
-                component={Searching}
-                options={verticalAnimation}
-              />
             </Stack.Group>
             <Stack.Group
               screenOptions={{
@@ -38,6 +34,16 @@ const Routes = () => {
               <Stack.Screen
                 name="Add Playlist"
                 component={AddPlaylist}
+                options={verticalAnimation}
+              />
+              <Stack.Screen
+                name="Add Songs"
+                component={AddSongs}
+                options={verticalAnimation}
+              />
+              <Stack.Screen
+                name="Search Songs"
+                component={SearchSongs}
                 options={verticalAnimation}
               />
             </Stack.Group>

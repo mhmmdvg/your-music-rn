@@ -26,3 +26,57 @@ export interface NewReleaseType {
   ];
   name: string;
 }
+
+export interface PlaylistsItem {
+  track: {
+    id: string;
+    name: string;
+    artists: [
+      {
+        name: string;
+      },
+    ];
+    album: {
+      name: string;
+      images: [
+        {
+          url: string;
+        },
+      ];
+    };
+    duration_ms?: number;
+  };
+}
+
+export interface PlaylistsItemData {
+  id: string;
+  description: string;
+  images: [
+    {
+      url: string;
+    },
+  ];
+  name: string;
+  owner: {
+    display_name: string;
+  };
+}
+
+export interface PlaylistSongItems {
+  id: string;
+  name: string;
+  artists: [
+    {
+      name: string;
+    },
+  ];
+  album: {
+    name: string;
+    images: [
+      {
+        url: string;
+      },
+    ];
+  };
+  uri?: string;
+}

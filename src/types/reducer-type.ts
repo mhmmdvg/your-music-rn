@@ -14,6 +14,8 @@ export enum Types {
   UpdateUser = 'UPDATE_USER',
   InputCreatePlaylist = 'INPUT_CREATE_PLAYLIST',
   UpdatePlaylists = 'UPDATE_PLAYLISTS',
+  DetailPlaylists = 'DETAIL_PLAYLISTS',
+  SnapshotUpdate = 'SNAPSHOT_UPDATE',
 }
 
 export type AuthPayload = {
@@ -53,5 +55,27 @@ export type UpdatePlaylistsPayload = {
         url?: string;
       },
     ];
+  };
+};
+
+export type DetailPlaylistsPayload = {
+  [Types.DetailPlaylists]: {
+    id: string;
+    description: string;
+    images: [
+      {
+        url: string;
+      },
+    ];
+    name: string;
+    owner: {
+      display_name: string;
+    };
+  };
+};
+
+export type SnapshotUpdatePayload = {
+  [Types.SnapshotUpdate]: {
+    snapshot_id: string;
   };
 };

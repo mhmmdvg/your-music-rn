@@ -30,9 +30,29 @@ export type UpdatePlaylistsType = {
   ];
 };
 
+export type DetailPlaylistsData = {
+  id: string;
+  description: string;
+  images: [
+    {
+      url: string;
+    },
+  ];
+  name: string;
+  owner: {
+    display_name: string;
+  };
+};
+
+export type SnapshotUpdateType = {
+  snapshot_id: string;
+};
+
 export type InitialState = {
   auth: AuthType;
   updateUser: UpdateUserType;
   inputCreatePlaylist: InputCreatePlaylistType;
   updatePlaylists: UpdatePlaylistsType[];
+  detailPlaylists: DetailPlaylistsData;
+  snapshotUpdate: SnapshotUpdateType;
 };

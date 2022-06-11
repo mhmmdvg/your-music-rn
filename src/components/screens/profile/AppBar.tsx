@@ -10,7 +10,6 @@ type Props = {
 
 const AppBar: FC<Props> = ({scrollAnimation, appbarAnimation}) => {
   const isUser = useUser();
-  // const {scrollY, appBarTransform} = useScrollAnimation();
 
   return (
     <AppBarStyle>

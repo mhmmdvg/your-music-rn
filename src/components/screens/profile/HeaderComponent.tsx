@@ -46,12 +46,14 @@ const ButtonText = styled.Text`
 `;
 
 type Props = {
+  scrollAnimation: any;
   animationContainer: any;
   animationName: any;
   addCondition: number | undefined;
 };
 
 const HeaderComponent: FC<Props> = ({
+  scrollAnimation,
   animationContainer,
   animationName,
   addCondition,
@@ -65,7 +67,16 @@ const HeaderComponent: FC<Props> = ({
         colors={['#555', '#666', '#060606']}
         style={styles.header}>
         <Animated.View
-          style={[HeaderContainer, {transform: animationContainer}]}>
+          style={[
+            HeaderContainer,
+            {
+              transform: animationContainer,
+              opacity: scrollAnimation.interpolate({
+                inputRange: [-200, -100, 0, 150, 151],
+                outputRange: [200, 0, 1, 0, 0],
+              }),
+            },
+          ]}>
           <ProfilePicture
             source={
               isUser?.images.length

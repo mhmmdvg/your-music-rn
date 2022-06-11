@@ -1,9 +1,13 @@
-import React, {createContext, FC, useReducer} from 'react';
+import React, {createContext, FC, useMemo, useReducer} from 'react';
 import {
   AuthActions,
   authReducer,
+  DetailPlaylistsActions,
+  detailPlaylistsReducer,
   InputCreatePlaylistActions,
   inputCreatePlaylistReducer,
+  SnapshotUpdateActions,
+  snapshotUpdateReducer,
   UpdatePlaylistsActions,
   updatePlaylistsReducer,
   UpdateUserActions,
@@ -31,6 +35,22 @@ const contextInitialState: InitialState = {
     value: '',
   },
   updatePlaylists: [],
+  detailPlaylists: {
+    id: '',
+    description: '',
+    images: [
+      {
+        url: '',
+      },
+    ],
+    name: '',
+    owner: {
+      display_name: '',
+    },
+  },
+  snapshotUpdate: {
+    snapshot_id: '',
+  },
 };
 
 const MyContext = createContext<{
@@ -40,6 +60,8 @@ const MyContext = createContext<{
     | UpdateUserActions
     | InputCreatePlaylistActions
     | UpdatePlaylistsActions
+    | DetailPlaylistsActions
+    | SnapshotUpdateActions
   >;
 }>({
   state: contextInitialState,
@@ -47,23 +69,30 @@ const MyContext = createContext<{
 });
 
 const mainReducer = (
-  {auth, updateUser, inputCreatePlaylist, updatePlaylists}: InitialState,
+  {
+    auth,
+    updateUser,
+    inputCreatePlaylist,
+    updatePlaylists,
+    detailPlaylists,
+    snapshotUpdate,
+  }: InitialState,
   action: any,
 ) => ({
   auth: authReducer(auth, action),
   updateUser: updateUserReducer(updateUser, action),
   inputCreatePlaylist: inputCreatePlaylistReducer(inputCreatePlaylist, action),
   updatePlaylists: updatePlaylistsReducer(updatePlaylists, action),
+  detailPlaylists: detailPlaylistsReducer(detailPlaylists, action),
+  snapshotUpdate: snapshotUpdateReducer(snapshotUpdate, action),
 });
 
 const ContextProvider: FC = ({children}) => {
   const [state, dispatch] = useReducer(mainReducer, contextInitialState);
 
-  return (
-    <MyContext.Provider value={{state, dispatch}}>
-      {children}
-    </MyContext.Provider>
-  );
+  const value = useMemo(() => ({state, dispatch}), [state, dispatch]);
+
+  return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
 };
 
 export {MyContext, ContextProvider};
