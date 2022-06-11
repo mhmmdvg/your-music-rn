@@ -26,6 +26,7 @@ export const ItemList = styled.View`
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
+  align-items: center;
   margin: 8px 0px;
 `;
 

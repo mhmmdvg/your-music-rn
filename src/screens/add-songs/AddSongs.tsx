@@ -82,6 +82,29 @@ const SearchInput = styled.TextInput`
   width: 100%;
 `;
 
+const NotifNull = styled.View`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 50%;
+`;
+
+const TitleNotif = styled.Text`
+  font-size: 22px;
+  font-family: 'PlusJakartaSans-ExtraBold';
+  color: #fff;
+`;
+
+const SubTitleNotif = styled.Text`
+  margin-top: 10px;
+  font-size: 14px;
+  font-family: 'PlusJakartaSans-SemiBold';
+  color: #fff;
+`;
+
 const {height: SCREEN_HEIGHT} = Dimensions.get('window');
 
 const AddSongs = () => {
@@ -196,6 +219,14 @@ const AddSongs = () => {
           style={[styles.container, {opacity: translateYOpacity}]}
           data={searchResults}
           showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            searchResults.length > 0 ? null : (
+              <NotifNull>
+                <TitleNotif>Play what you love</TitleNotif>
+                <SubTitleNotif>Search for songs</SubTitleNotif>
+              </NotifNull>
+            )
+          }
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <TouchableOpacity
