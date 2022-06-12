@@ -8,7 +8,6 @@ import useLogin from './hooks/use-login';
 import BottomNav from './components/bottom-navigation/BottomNav';
 import AddPlaylist from './screens/add-playlist/AddPlaylist';
 import AddSongs from './screens/add-songs/AddSongs';
-import SearchSongs from './screens/search/Search-songs';
 
 const Stack = createStackNavigator();
 
@@ -39,11 +38,6 @@ const Routes = () => {
               <Stack.Screen
                 name="Add Songs"
                 component={AddSongs}
-                options={verticalAnimation}
-              />
-              <Stack.Screen
-                name="Search Songs"
-                component={SearchSongs}
                 options={verticalAnimation}
               />
             </Stack.Group>
