@@ -1,8 +1,7 @@
 import React, {FC, useContext, useEffect} from 'react';
 import AppBar from '../../components/screens/detail-playlists/AppBar';
-import useRefresh from '../../hooks/use-refresh';
 import Header from '../../components/screens/detail-playlists/Header';
-import {Animated, RefreshControl, StyleSheet} from 'react-native';
+import {Animated, StyleSheet} from 'react-native';
 import useGetPlaylistsItem from '../../hooks/use-getPlaylistsItem';
 import PlaylistsItem from '../../components/screens/detail-playlists/PlaylistsItem';
 import useScrollDetailPlaylistsAnimation from '../../hooks/use-scrollDetailPlaylistsAnimation';
@@ -15,7 +14,7 @@ type Props = {
 
 const DetailPlaylists: FC<Props> = ({route}) => {
   const {playlist, getPlaylistsItem} = useGetPlaylistsItem();
-  const {refreshing, onRefresh} = useRefresh();
+  // const {refreshing, onRefresh} = useRefresh();
   const {scrollY, transformContainer, appBarTransform, onScroll} =
     useScrollDetailPlaylistsAnimation();
   const {state, dispatch} = useContext(MyContext);
@@ -34,18 +33,10 @@ const DetailPlaylists: FC<Props> = ({route}) => {
       />
       <Animated.FlatList
         style={styles.flatlist}
+        maxToRenderPerBatch={5}
+        updateCellsBatchingPeriod={30}
         scrollToOverflowEnabled={true}
         overScrollMode="never"
-        refreshControl={
-          <RefreshControl
-            title="Loading..."
-            tintColor="#fff"
-            titleColor="#fff"
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          />
-        }
-        refreshing={refreshing}
         ListHeaderComponent={
           <Header
             animationContainer={transformContainer}

@@ -61,7 +61,6 @@ export const Header = styled.View`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 7.5%;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 `;

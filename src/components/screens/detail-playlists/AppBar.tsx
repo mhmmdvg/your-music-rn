@@ -1,6 +1,12 @@
 import {NavigationContext} from '@react-navigation/native';
 import React, {FC, useContext} from 'react';
-import {Animated, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Animated,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import BackIcon from '../../../assets/icons/back-icon';
 import {PlaylistsItemData} from '../../../types/playlist';
 import {AppBarStyle, Title} from './styled/styled';
@@ -14,7 +20,12 @@ type Props = {
 const AppBar: FC<Props> = ({scrollAnimation, appbarAnimation, data}) => {
   const navigation = useContext(NavigationContext);
   return (
-    <AppBarStyle>
+    <View
+      style={[
+        AppBarStyle,
+        // eslint-disable-next-line react-native/no-inline-styles
+        Platform.OS === 'ios' ? {height: '8.5%'} : {height: 38},
+      ]}>
       <Animated.View
         style={
           styles(
@@ -34,6 +45,7 @@ const AppBar: FC<Props> = ({scrollAnimation, appbarAnimation, data}) => {
               outputRange: [0, 1],
             }),
           ).appBarText,
+
           {
             transform: appbarAnimation,
           },
@@ -56,7 +68,7 @@ const AppBar: FC<Props> = ({scrollAnimation, appbarAnimation, data}) => {
           <BackIcon />
         </TouchableOpacity>
       </Animated.View>
-    </AppBarStyle>
+    </View>
   );
 };
 
@@ -70,7 +82,8 @@ const styles = (opacityAnimated: any) =>
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: '#060606',
+      height: Platform.OS === 'ios' ? 80 : 50,
+      backgroundColor: '#161616',
       opacity: opacityAnimated,
     },
 
@@ -79,16 +92,18 @@ const styles = (opacityAnimated: any) =>
       display: 'flex',
       flexDirection: 'row',
       top: 0,
+      marginTop: Platform.OS === 'ios' ? 40 : 0,
       left: 0,
       right: 0,
       bottom: 0,
+      // height: '100%',
       paddingHorizontal: 10,
       alignItems: 'center',
       opacity: opacityAnimated,
     },
 
     topOption: {
-      paddingTop: 20,
+      marginTop: Platform.OS === 'ios' ? '12%' : 20,
       paddingHorizontal: 13,
       opacity: opacityAnimated,
     },

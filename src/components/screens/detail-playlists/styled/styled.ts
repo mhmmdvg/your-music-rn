@@ -23,7 +23,7 @@ export const Header = css`
 export const Name = styled.Text`
   font-size: 28px;
   color: #fff;
-  font-family: 'PlusJakartaSans-Bold';
+  font-family: 'PlusJakartaSans-ExtraBold';
 `;
 
 export const Title = styled.Text`
@@ -52,7 +52,6 @@ export const PlaylistsTitle = styled.Text`
 `;
 
 export const HeaderContainer = css`
-  height: 300px;
   padding-left: 13px;
   padding-right: 13px;
   justify-content: center;
@@ -63,10 +62,10 @@ export const InfoBox = css`
   padding: 8px 13px;
 `;
 
-export const AppBarStyle = styled.View`
+export const AppBarStyle = css`
   position: absolute;
   padding-bottom: 50px;
-  height: 38px;
+  /* height: 38px; */
   z-index: 5;
   width: 100%;
 `;

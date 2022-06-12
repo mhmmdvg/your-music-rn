@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import LinearGradient from 'react-native-linear-gradient';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import HomeIcon from '../../assets/icons/home-icon';
 import HomeFillIcon from '../../assets/icons/homefill-icon';
 import SearchIcon from '../../assets/icons/search-icon';
@@ -57,7 +57,17 @@ const BottomNav = () => {
         },
         tabBarBackground: () => (
           <LinearGradient
-            colors={['#05050508', '#030303f3', '#020202']}
+            colors={
+              Platform.OS === 'ios'
+                ? [
+                    '#02020217',
+                    '#020202d7',
+                    '#020202f3',
+                    '#020202f3',
+                    '#020202',
+                  ]
+                : ['#02020208', '#020202a7', '#020202f3', '#020202']
+            }
             style={styles.linearGradient}
           />
         ),

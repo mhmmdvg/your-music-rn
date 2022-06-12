@@ -1,4 +1,4 @@
-import {Animated, Dimensions, StyleSheet} from 'react-native';
+import {Animated, Dimensions, Platform, StyleSheet} from 'react-native';
 import React, {useContext} from 'react';
 import {CloseButton, Header, HeaderTitle, SearchInput} from './styled/styled';
 import CloseIcon from '../../../assets/icons/close-icon';
@@ -13,7 +13,7 @@ type Props = {
   translateYOpacity: Animated.AnimatedValue;
 };
 
-const {height: SCREEN_HEIGHT} = Dimensions.get('window');
+const {height: SCREEN_HEIGHT} = Dimensions.get('screen');
 
 const HeaderAddSongs = (props: Props) => {
   const {
@@ -27,8 +27,12 @@ const HeaderAddSongs = (props: Props) => {
 
   const navigation = useContext(NavigationContext);
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
-    <Header style={{backgroundColor: onFocus ? '#202020' : '#121212'}}>
+    <Header
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        backgroundColor: onFocus ? '#202020' : '#121212',
+        height: (SCREEN_HEIGHT / 100) * (Platform.OS === 'ios' ? 6 : 7),
+      }}>
       <CloseButton
         onPress={onFocus ? () => closeSearch() : () => navigation?.goBack()}>
         <CloseIcon />

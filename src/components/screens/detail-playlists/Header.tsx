@@ -1,7 +1,7 @@
 import styled from '@emotion/native';
 import {NavigationContext} from '@react-navigation/native';
 import React, {FC, useContext} from 'react';
-import {Animated, StyleSheet, View} from 'react-native';
+import {Animated, Dimensions, Platform, StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AddIcon from '../../../assets/icons/add-icon';
 import useUser from '../../../hooks/use-user';
@@ -55,8 +55,10 @@ const ProfileName = styled.Text`
   font-size: 16px;
   color: #fff;
   margin-left: 10px;
-  font-family: 'JakatSans-SemiBold';
+  font-family: 'PlusJakartaSans-SemiBold';
 `;
+
+const {height: SCREEN_HEIGHT} = Dimensions.get('screen');
 
 type Props = {
   scrollAnimation: any;
@@ -80,7 +82,14 @@ const Header: FC<Props> = ({
         colors={['#555', '#666', '#060606']}
         style={styles.header}>
         <Animated.View
-          style={[HeaderContainer, {transform: animationContainer}]}>
+          style={[
+            HeaderContainer,
+            // eslint-disable-next-line react-native/no-inline-styles
+            {
+              height: Platform.OS === 'ios' ? 320 : 300,
+              transform: animationContainer,
+            },
+          ]}>
           <View style={styles.imageContainer}>
             <Animated.Image
               style={[
@@ -88,7 +97,7 @@ const Header: FC<Props> = ({
                 {
                   opacity: scrollAnimation.interpolate({
                     inputRange: [-300, -100, 0, 250, 251],
-                    outputRange: [300, 0, 1, 0, 0],
+                    outputRange: [300, 1, 1, 0, 0],
                   }),
                 },
               ]}
@@ -153,11 +162,12 @@ const styles = StyleSheet.create({
   header: {
     marginTop: -300,
     paddingTop: 300,
+    height: (SCREEN_HEIGHT / 100) * 70,
+    overflow: 'visible',
   },
   playlistsCover: {
     height: '100%',
     width: '100%',
-    marginBottom: 10,
     alignSelf: 'center',
   },
 
