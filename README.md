@@ -2,7 +2,10 @@
 
 ![yourmusic](https://github.com/mhmmdvg/your-music-rn/assets/57744555/8b397d1b-203e-4942-909d-3521990d03cc)
 
-Your Music with Spotify API with React Native App
+Your Music is an application integrated with Spotify. The application requires logging in using a Spotify account. In Your Music, you can create playlists and add music to them. Additionally, there is a search feature to find specific music. The home page of Your Music displays the latest music and user playlists. You can also view your profile, which is integrated with Spotify.
+
+Your Music was developed using React Native, making it compatible with both iOS and Android platforms. The programming language used in Your Music is Typescript.
+
 
 ## How to Run this APP in Local
 
